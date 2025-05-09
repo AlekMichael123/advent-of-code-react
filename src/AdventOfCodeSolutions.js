@@ -12,7 +12,7 @@ function AdventOfCodeSolutions() {
     const savedDay = localStorage.getItem('day');
     const savedInput = localStorage.getItem('input');
     return {
-      day: savedDay ? parseInt(savedDay, 10) : 1,
+      day: savedDay ? Number(savedDay, 10) : 1,
       input: savedInput || '',
     };
   }, []);
