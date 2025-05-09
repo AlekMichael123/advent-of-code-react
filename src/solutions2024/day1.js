@@ -2,7 +2,7 @@ const day1 = input => {
   const [leftNums, rightNums] = parseData(input);
   return {
     part1: part1(leftNums, rightNums),
-    part2: part2(input),
+    part2: part2(leftNums, rightNums),
   };
 };
 
@@ -20,6 +20,13 @@ const part1 = (leftNums, rightNums) => {
   return leftNums.map((num, i) => Math.abs(num - rightNums[i])).reduce((acc, num) => acc + num, 0);
 };
 
-const part2 = input => {};
+const part2 = (leftNums, rightNums) => {
+  const freqRight = rightNums.reduce((acc, num) => {
+    acc[num] = (acc[num] || 0) + 1;
+    return acc;
+  }, {});
+  const freqLeftInRight = leftNums.map(num => freqRight[num] || 0);
+  return leftNums.map((num, i) => num * freqLeftInRight[i]).reduce((acc, num) => acc + num, 0);
+};
 
 export default day1;
